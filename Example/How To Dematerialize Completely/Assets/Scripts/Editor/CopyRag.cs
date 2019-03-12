@@ -37,10 +37,14 @@ public class CopyRag : EditorWindow
         foreach (var component in _sourceGO.GetComponents<Component>())
         {
             var componentType = component.GetType();
+            Debug.Log(componentType);
+
             if (componentType != typeof(Transform) &&
                 componentType != typeof(MeshFilter) &&
                 componentType != typeof(MeshRenderer) &&
-                componentType != typeof(Collider)
+                componentType != typeof(BoxCollider) &&
+                componentType != typeof(SphereCollider) &&
+                componentType != typeof(CapsuleCollider)
                 )
             {
                 Debug.Log("Found a component of type " + component.GetType());
