@@ -438,10 +438,10 @@ MonoBehaviour:
   - {fileID: 2098671197085367724}
   - {fileID: 2098671197085367748}
   maintainHeightStanding: 1
-  maintainHeightCrouching: 1
+  maintainHeightCrouching: 0.6
   jumpDelay: 0.4
   airTimeDelay: 2
-  jumpForce: 50
+  jumpForce: 70
   jumpForwardForce: 15
   facePlantForce: 30
 --- !u!114 &1521131838
