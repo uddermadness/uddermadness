@@ -15,6 +15,12 @@ public class Enemy : MonoBehaviour
     public float retreatDist;
     public float speed;
 
+    public bool stun = false;
+
+    public float stunTimer;
+    public float stunDur;
+    public GameObject drop;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -30,7 +36,7 @@ public class Enemy : MonoBehaviour
         float distFromPlayer = Vector3.Distance(transform.position, target.position);
         //Debug.Log("I am at" + transform.position);
 
-        if (distFromPlayer < detectDist) // || health < behavior.health
+        if (distFromPlayer < detectDist && !stun) // || health < behavior.health
         {
             pathfinder.SetDestination (target.position); 
 
@@ -48,18 +54,40 @@ public class Enemy : MonoBehaviour
                 transform.position = Vector3.MoveTowards(transform.position, target.position, -speed * Time.deltaTime);   
             }
         }
-    }
 
-    IEnumerator UpdatePath() {
-        float refreshRate = 0.5f;
 
-        while (target != null)
+        if (Input.GetKeyDown("space"))
         {
-            Vector3 targetPosition = new Vector3(target.position.x,0,target.position.z);
-            pathfinder.SetDestination (target.position);
-            yield return new WaitForSeconds(refreshRate);
+            stun = true;
+            stunTimer = stunDur;
+        }
+
+        if( stunTimer > 0)
+        {
+            stunTimer -= Time.deltaTime;
+        }
+        else
+        {
+            stun = false;
+        }
+
+        if (Input.GetKeyDown("k"))
+        {
+            Destroy(gameObject);
+            Instantiate(drop, transform.position, transform.rotation);
         }
     }
+
+    // IEnumerator UpdatePath() {
+    //     float refreshRate = 0.5f;
+
+    //     while (target != null)
+    //     {
+    //         Vector3 targetPosition = new Vector3(target.position.x,0,target.position.z);
+    //         pathfinder.SetDestination (target.position);
+    //         yield return new WaitForSeconds(refreshRate);
+    //     }
+    // }
 
 
 
