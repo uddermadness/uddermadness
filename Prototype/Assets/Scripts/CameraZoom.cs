@@ -6,10 +6,10 @@ using UnityEngine.UI;
 public class CameraZoom : MonoBehaviour {
 
 	public Camera m_OrthographicCamera;
-	float maxZoom = 2f;
-	float minZoom = 7f;
+	float maxZoom = 0.42f;
+	float minZoom = 1f;
 
-	float curZoom = 2f;
+	float curZoom = 0.42f;
 	void Update(){
 		if (Input.GetKey(KeyCode.UpArrow))
 		{
