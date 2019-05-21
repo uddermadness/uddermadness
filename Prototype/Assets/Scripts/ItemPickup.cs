@@ -6,6 +6,6 @@ public class ItemPickup : MonoBehaviour
 {
 	public void Clicky(ItemData data)
 	{
-		Inventory.main.Pickup(data);
+		// Inventory.main.Pickup(data);
 	}
 }

@@ -1,37 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class Inventory : MonoBehaviour {
-
-	public static Inventory main { get; private set; }
-
+[CreateAssetMenu(menuName = "Game/Inventory/Collection")]
+public class Inventory : ScriptableObject
+{
 	public List<InventoryItem> items = new List<InventoryItem>();
 
-	public Button buttonTemplate;
-
-	public Transform itemsParent;
-
-	private void Awake()
-	{
-		if (main == null)
-		{
-			main = this;
-			DontDestroyOnLoad(gameObject);
-		}
-		else
-		{
-			DestroyImmediate(this);
-		}
-	}
-
-	private void Start()
-	{
-		buttonTemplate.gameObject.SetActive(false);
-	}
-
-	public void Pickup(ItemData item, int count)
+    public void Pickup(ItemData item, int count)
 	{
 		foreach (InventoryItem i in items)
 		{
@@ -43,9 +19,6 @@ public class Inventory : MonoBehaviour {
 		}
 
 		items.Add(new InventoryItem(item, count));
-		Button b = Instantiate<Button>(buttonTemplate, itemsParent);
-		b.GetComponent<Image>().sprite = item.icon;
-		b.gameObject.SetActive(true);
 	}
 
 	public void Pickup(ItemData item)
