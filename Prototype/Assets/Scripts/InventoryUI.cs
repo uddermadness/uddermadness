@@ -15,12 +15,11 @@ public class InventoryUI : MonoBehaviour {
 	{
 		buttonTemplate.gameObject.SetActive(false);
 		GenerateItems();
-
+		Debug.Log("HELLO");
 	}
 
 	private void GenerateItems()
 	{
-		Debug.Log(inventory.items.Count);
 		foreach (InventoryItem inventoryItem in inventory.items)
 		{
 			InventoryItemUI b = Instantiate<InventoryItemUI>(buttonTemplate, itemsParent);

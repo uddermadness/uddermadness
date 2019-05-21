@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Carrots
   itemDescription: Shooting thin lines of carrots
-  icon: {fileID: 21300000, guid: da23eec8d54a2ca46b9902cb3f810a72, type: 3}
+  icon: {fileID: 21300000, guid: 1053e801dc9c9844eb045953535a2ab0, type: 3}
