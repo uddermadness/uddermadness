@@ -4,8 +4,10 @@ using UnityEngine.UI;
 
 public class ItemPickup : MonoBehaviour
 {
+	public Inventory inventory;
+
 	public void Clicky(ItemData data)
 	{
-		// Inventory.main.Pickup(data);
+		inventory.Pickup(data);
 	}
 }

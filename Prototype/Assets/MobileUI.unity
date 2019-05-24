@@ -201,7 +201,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 15706138}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1478668330}
+        m_MethodName: Clicky
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 11400000, guid: e38183328cb36324eb56079ba85a713d,
+            type: 2}
+          m_ObjectArgumentAssemblyTypeName: ItemData, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &15706138
@@ -2113,6 +2125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 283aeb19551a06a4d8a5c523cae7eb33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventory: {fileID: 11400000, guid: ccd5f06483882fa4eb0f5248aee1bf7d, type: 2}
 --- !u!114 &1478668331
 MonoBehaviour:
   m_ObjectHideFlags: 0
