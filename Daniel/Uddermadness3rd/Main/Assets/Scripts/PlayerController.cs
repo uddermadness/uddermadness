@@ -22,6 +22,8 @@ public class PlayerController : MonoBehaviour {
 	Transform cameraT;
 	CharacterController controller;
 
+	Coroutine idleBreak;
+
 	void Start () {
 		animator = GetComponent<Animator> ();
 		cameraT = Camera.main.transform;
@@ -32,30 +34,49 @@ public class PlayerController : MonoBehaviour {
 		// input
 		Vector2 input = new Vector2 (Input.GetAxisRaw ("Horizontal"), Input.GetAxisRaw ("Vertical"));
 		Vector2 inputDir = input.normalized;
-		bool running = Input.GetKey (KeyCode.LeftShift);
+		bool running = true;// Input.GetKey (KeyCode.LeftShift);
+
+		if (idleBreak == null)
+		{
+			idleBreak = StartCoroutine(IdleBreak());
+		}
 
 		Move (inputDir, running);
 
 		if (Input.GetKeyDown (KeyCode.Space)) {
+			if (idleBreak != null)
+			{
+				StopCoroutine(idleBreak);
+				idleBreak = null;
+			}
 			Jump ();
 		}
+
 		// animator
 		float animationSpeedPercent = ((running) ? currentSpeed / runSpeed : currentSpeed / walkSpeed * .5f);
 		animator.SetFloat ("speedPercent", animationSpeedPercent, speedSmoothTime, Time.deltaTime);
 
+		if (animator.GetBool("Jumping") && controller.isGrounded)
+			animator.SetTrigger("Land");
+
+		animator.SetBool("Jumping", !controller.isGrounded);
+
 	}
 
 	void Move(Vector2 inputDir, bool running) {
-		if (inputDir != Vector2.zero) {
-			float targetRotation = Mathf.Atan2 (inputDir.x, inputDir.y) * Mathf.Rad2Deg + cameraT.eulerAngles.y;
-			transform.eulerAngles = Vector3.up * Mathf.SmoothDampAngle(transform.eulerAngles.y, targetRotation, ref turnSmoothVelocity, GetModifiedSmoothTime(turnSmoothTime));
-		}
+		// if (inputDir != Vector2.zero) {
+		// 	float targetRotation = Mathf.Atan2 (inputDir.x, inputDir.y) * Mathf.Rad2Deg + cameraT.eulerAngles.y;
+		// 	transform.eulerAngles = Vector3.up * Mathf.SmoothDampAngle(transform.eulerAngles.y, targetRotation, ref turnSmoothVelocity, GetModifiedSmoothTime(turnSmoothTime));
+		// }
 			
+		transform.rotation = Quaternion.Euler(0, Camera.main.transform.eulerAngles.y, 0);
+		Vector3 inputDir3D = new Vector3(inputDir.x, 0f, inputDir.y);
+
 		float targetSpeed = ((running) ? runSpeed : walkSpeed) * inputDir.magnitude;
 		currentSpeed = Mathf.SmoothDamp (currentSpeed, targetSpeed, ref speedSmoothVelocity, GetModifiedSmoothTime(speedSmoothTime));
 
 		velocityY += Time.deltaTime * gravity;
-		Vector3 velocity = transform.forward * currentSpeed + Vector3.up * velocityY;
+		Vector3 velocity = transform.TransformDirection(inputDir3D) * currentSpeed + Vector3.up * velocityY;
 
 		controller.Move (velocity * Time.deltaTime);
 		currentSpeed = new Vector2 (controller.velocity.x, controller.velocity.z).magnitude;
@@ -64,6 +85,15 @@ public class PlayerController : MonoBehaviour {
 			velocityY = 0;
 		}
 
+		animator.SetBool("Moving", inputDir.magnitude > Mathf.Epsilon);
+		animator.SetFloat("FwdBack", inputDir.normalized.y == 0 ? 1f : inputDir.normalized.y);
+		animator.SetFloat("Strafing", (1f + inputDir.normalized.x) * 0.5f);
+
+		if (controller.velocity != Vector3.zero && idleBreak != null)
+		{
+			StopCoroutine(idleBreak);
+			idleBreak = null;
+		}
 	}
 
 	void Jump() {
@@ -82,5 +112,14 @@ public class PlayerController : MonoBehaviour {
 			return float.MaxValue;
 		}
 		return smoothTime / airControlPercent;
+	}
+
+	IEnumerator IdleBreak()
+	{
+		while (true)
+		{
+			yield return new WaitForSeconds(15f);
+			animator.SetTrigger("Idle Break");
+		}
 	}
 }
