@@ -122,4 +122,12 @@ public class PlayerController : MonoBehaviour {
 			animator.SetTrigger("Idle Break");
 		}
 	}
+
+	private void OnTriggerEnter(Collider other)
+	{
+		if (other.gameObject.layer == LayerMask.NameToLayer("Interactable"))
+		{
+			other.gameObject.GetComponent<Door>().Open();
+		}
+	}
 }

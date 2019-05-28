@@ -4,4 +4,6 @@ using UnityEngine;
 
 public class PickupType : MonoBehaviour {
 	public AmmoType type;
+
+	public ItemData item;
 }
