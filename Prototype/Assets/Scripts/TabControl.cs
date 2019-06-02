@@ -45,34 +45,15 @@ public class TabControl : MonoBehaviour
         }
     } */
 
-    public Sprite OnClick; // Drag your first sprite here
-    public Sprite NotClicked; // Drag your second sprite here
+    SpriteRenderer spriteRenderer; 
 
-    private SpriteRenderer spriteRenderer; 
-
-
-    void Start() {
-        spriteRenderer = GetComponent<SpriteRenderer>(); // we are accessing the SpriteRenderer that is attached to the Gameobject
-        if (spriteRenderer.sprite == null) // if the sprite on spriteRenderer is null then
-        spriteRenderer.sprite = OnClick; // set the sprite to sprite1
-    }
-    void Update()
+    void Start()
     {
-        //Press space to change the Sprite of the Image
-        if (Input.GetMouseButtonDown(0))
-        {
-            ChangeSprite();
-        }
+        spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
     }
 
-    void ChangeSprite() {
-        if (spriteRenderer.sprite == OnClick && spriteRenderer == null) // if the spriteRenderer sprite = sprite1 then change to sprite2
-        {
-            spriteRenderer.sprite = NotClicked;
-        }
-         else
-        {
-            spriteRenderer.sprite = OnClick; // otherwise change it back to sprite1
-        }
+    public void change (Sprite differentSprite)
+    {
+        spriteRenderer.sprite = differentSprite;
     }
 }
