@@ -6,6 +6,8 @@ using System.Collections;
     public float bulletSpeed = 10;
     public Rigidbody bullet;
     public Transform bulletSpawnPoint;
+
+    public Inventory inventory;
     
     public int maxAmmo = 50;
     private int currentAmmo = -1;
