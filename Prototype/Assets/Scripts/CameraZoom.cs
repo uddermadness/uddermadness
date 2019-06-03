@@ -11,23 +11,14 @@ public class CameraZoom : MonoBehaviour {
 
 	float curZoom = 0.42f;
 
-	public Button m_PlusButton, m_MinusButton;
-
-	void Start()
-	{
-		m_PlusButton = gameObject.GetComponent<Button>();
-		m_MinusButton = gameObject.GetComponent<Button>();
-
-	}
-
 	public void ZoomIn()
 	{
-		curZoom = Mathf.Clamp(curZoom + 1f * Time.deltaTime, maxZoom, minZoom);
+		curZoom = Mathf.Clamp(curZoom + 35f * Time.deltaTime, maxZoom, minZoom);
 	}
 
 	public void ZoomOut()
 	{
-		curZoom = Mathf.Clamp(curZoom - 1f * Time.deltaTime, maxZoom, minZoom);
+		curZoom = Mathf.Clamp(curZoom - 35f * Time.deltaTime, maxZoom, minZoom);
 	}
 	
 
