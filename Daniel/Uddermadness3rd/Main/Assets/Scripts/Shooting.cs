@@ -55,13 +55,14 @@ using System.Collections;
     {
         transform.eulerAngles = Camera.main.transform.eulerAngles;
 
-        if (isReloading)
-            return;
+        // if (isReloading)
+        //     return;
 
         if (currentAmmo <= 0)
         {
-            StartCoroutine(Reload());
-            return;
+            // StartCoroutine(Reload());
+            // return;
+            currentBullet = 0;
         }
         if(Input.GetKeyDown(KeyCode.Alpha1))
         {
@@ -71,12 +72,22 @@ using System.Collections;
         {
             currentBullet = 1;
             currentAmmo = inventory.items[currentBullet - 1].count;
+            if (currentAmmo == 0)
+            {
+                currentBullet = 0;
+                Debug.Log("DefaultBullet");
+            }
             Debug.Log(currentAmmo + "ice");
         }
         if(Input.GetKeyDown(KeyCode.Alpha3))
         {
             currentBullet = 2;
             currentAmmo = inventory.items[currentBullet - 1].count;
+            if (currentAmmo == 0)
+            {
+                currentBullet = 0;
+                Debug.Log("DefaultBullet");
+            }
             Debug.Log(currentAmmo + "pepper");
         }
         if(Input.GetKeyDown(KeyCode.Alpha4))
@@ -95,14 +106,14 @@ using System.Collections;
         Debug.Log("Picked up " + name);
     }
 
-    IEnumerator Reload ()
-    {
-        isReloading = true;
-        Debug.Log("Reloading...");
+    // IEnumerator Reload ()
+    // {
+    //     isReloading = true;
+    //     Debug.Log("Reloading...");
 
-        yield return new WaitForSeconds(reloadTime - .25f);
+    //     yield return new WaitForSeconds(reloadTime - .25f);
 
-        currentAmmo = maxAmmo;
-        isReloading = false;
-    }
+    //     currentAmmo = maxAmmo;
+    //     isReloading = false;
+    // }
  }
