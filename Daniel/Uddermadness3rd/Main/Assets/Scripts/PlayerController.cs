@@ -53,8 +53,8 @@ public class PlayerController : MonoBehaviour {
 		}
 
 		// animator
-		float animationSpeedPercent = ((running) ? currentSpeed / runSpeed : currentSpeed / walkSpeed * .5f);
-		animator.SetFloat ("speedPercent", animationSpeedPercent, speedSmoothTime, Time.deltaTime);
+		// float animationSpeedPercent = ((running) ? currentSpeed / runSpeed : currentSpeed / walkSpeed * .5f);
+		// animator.SetFloat ("speedPercent", animationSpeedPercent, speedSmoothTime, Time.deltaTime);
 
 		if (animator.GetBool("Jumping") && controller.isGrounded)
 			animator.SetTrigger("Land");

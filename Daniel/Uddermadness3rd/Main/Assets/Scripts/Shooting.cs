@@ -4,7 +4,8 @@ using System.Collections;
  public class Shooting : MonoBehaviour 
  {
     public float bulletSpeed = 10;
-    public Rigidbody bullet;
+    public Rigidbody[] bullet;
+    public int currentBullet;
     public Transform bulletSpawnPoint;
 
     public Inventory inventory;
@@ -20,7 +21,18 @@ using System.Collections;
     {
         if (currentAmmo == -1)
         currentAmmo = maxAmmo;
+
+        currentBullet = 0;
+
+        Debug.Log(inventory.items[0].item);
+        Debug.Log(inventory.items[0].count);
+        Debug.Log(inventory.items[1].item);
+        Debug.Log(inventory.items[1].count);
+        Debug.Log(inventory.items[2].item);
+        Debug.Log(inventory.items[2].count);
+        
     }
+    
 
     void OnEnable ()
     {
@@ -30,8 +42,12 @@ using System.Collections;
     void Fire()
     {
         currentAmmo--;
+        if (currentBullet > 0)
+        {
+            inventory.items[currentBullet - 1].count = currentAmmo;
+        }
         
-        Rigidbody bulletClone = Instantiate<Rigidbody>(bullet, bulletSpawnPoint.position, bulletSpawnPoint.rotation);
+        Rigidbody bulletClone = Instantiate<Rigidbody>(bullet[currentBullet], bulletSpawnPoint.position, bulletSpawnPoint.rotation);
         // bulletClone.velocity = transform.forward * bulletSpeed;
     }
 
@@ -46,6 +62,28 @@ using System.Collections;
         {
             StartCoroutine(Reload());
             return;
+        }
+        if(Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            currentBullet = 0;
+        }
+        if(Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            currentBullet = 1;
+            currentAmmo = inventory.items[currentBullet - 1].count;
+            Debug.Log(currentAmmo + "ice");
+        }
+        if(Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            currentBullet = 2;
+            currentAmmo = inventory.items[currentBullet - 1].count;
+            Debug.Log(currentAmmo + "pepper");
+        }
+        if(Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            currentBullet = 3;
+            currentAmmo = inventory.items[currentBullet - 1].count;
+            Debug.Log(currentAmmo + "slime");
         }
 
         if (Input.GetButton("Fire1"))
