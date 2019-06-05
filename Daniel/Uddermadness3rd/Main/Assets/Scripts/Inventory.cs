@@ -24,7 +24,8 @@ public class Inventory : ScriptableObject
 
 	public void Pickup(ItemData item)
 	{
-		Pickup(item, 1);
+		//amount of ammo collected each time
+		Pickup(item, 250);
 	}
 
 	public bool Has(ItemData item)
