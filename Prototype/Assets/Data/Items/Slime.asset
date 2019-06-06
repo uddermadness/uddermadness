@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3d7409f0d5b89b9498577e511d11d3d6, type: 3}
-  m_Name: Carrots
+  m_Name: Slime
   m_EditorClassIdentifier: 
-  itemName: Carrots
-  itemDescription: Shooting thin lines of carrots
-  icon: {fileID: 21300000, guid: da23eec8d54a2ca46b9902cb3f810a72, type: 3}
+  itemName: Slime
+  itemDescription: Boomerang
+  icon: {fileID: 21300000, guid: f101251c0d229ec4c99688849cba3f1a, type: 3}

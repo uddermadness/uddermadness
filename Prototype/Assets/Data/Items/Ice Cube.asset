@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3d7409f0d5b89b9498577e511d11d3d6, type: 3}
-  m_Name: Chili
+  m_Name: Ice Cube
   m_EditorClassIdentifier: 
-  itemName: Chili
-  itemDescription: Causes fire boobs
-  icon: {fileID: 21300000, guid: 2a7e7d115437a534187e7a715a2edc8a, type: 3}
+  itemName: Ice Cube
+  itemDescription: Disgusting goo
+  icon: {fileID: 21300000, guid: 0382d393e8a40054fb420a7fb125fadf, type: 3}

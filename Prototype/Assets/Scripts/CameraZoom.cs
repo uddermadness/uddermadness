@@ -6,19 +6,19 @@ using UnityEngine.UI;
 public class CameraZoom : MonoBehaviour {
 
 	public Camera m_OrthographicCamera;
-	float maxZoom = 0.42f;
+	float maxZoom = 5.31f;
 	float minZoom = 1f;
 
-	float curZoom = 0.42f;
+	float curZoom = 5.31f;
 
 	public void ZoomIn()
 	{
-		curZoom = Mathf.Clamp(curZoom + 35f * Time.deltaTime, maxZoom, minZoom);
+		curZoom = Mathf.Clamp(curZoom + 25f * Time.deltaTime, maxZoom, minZoom);
 	}
 
 	public void ZoomOut()
 	{
-		curZoom = Mathf.Clamp(curZoom - 35f * Time.deltaTime, maxZoom, minZoom);
+		curZoom = Mathf.Clamp(curZoom - 25f * Time.deltaTime, maxZoom, minZoom);
 	}
 	
 
