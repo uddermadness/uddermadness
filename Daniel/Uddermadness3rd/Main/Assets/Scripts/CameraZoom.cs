@@ -6,10 +6,10 @@ using UnityEngine.UI;
 public class CameraZoom : MonoBehaviour {
 
 	public Camera m_OrthographicCamera;
-	float maxZoom = 120f;
-	float minZoom = 70f;
+	float maxZoom = 50f;
+	float minZoom = 10f;
 
-	float curZoom = 120f;
+	float curZoom = 50f;
 
 	public void ZoomIn()
 	{

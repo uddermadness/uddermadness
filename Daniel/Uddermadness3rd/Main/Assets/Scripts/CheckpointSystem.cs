@@ -6,6 +6,7 @@ public class CheckpointSystem : MonoBehaviour
 {
     public GameObject Player;
     public Vector3 checkpointPosition;
+    public Player player;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +26,7 @@ public class CheckpointSystem : MonoBehaviour
         if (other.tag == "Player")
         {
             checkpointPosition = Player.transform.position;
+            player.SavePlayer();
             Debug.Log(checkpointPosition);
         }   
     }

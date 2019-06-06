@@ -11,17 +11,18 @@ public class Audio : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Button Sound = gameObject.GetComponent<Button>();
-        Sound.onClick.AddListener(Pause);
+        //Button Sound = gameObject.GetComponent<Button>();
+        //Sound.onClick.AddListener(Music);
     }
 
-   void Pause() {
+   public void Music() {
         Debug.Log("mute toggle");
 
         audioSource = audioObject.GetComponent<AudioSource>();
         if(!audioSource.isPlaying) {
             audioSource.Play();
-        } else {
+        } else if (audioSource.isPlaying)
+        {
             audioSource.Pause();
         }
     }

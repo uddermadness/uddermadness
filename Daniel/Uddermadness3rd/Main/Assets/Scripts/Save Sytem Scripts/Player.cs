@@ -6,8 +6,6 @@ public class Player : MonoBehaviour
 {
     // this script goes in the player components
 
-    public int health = 10;
-
     //this could be added to the manager
     public void SavePlayer()
     {
@@ -18,7 +16,7 @@ public class Player : MonoBehaviour
     {
         PlayerData data = SaveSystem.LoadPlayer();
 
-        health = data.health;
+        // health = data.health;
 
         Vector3 position;
         position.x = data.position[0];
