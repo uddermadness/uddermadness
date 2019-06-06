@@ -5,8 +5,7 @@ using UnityEngine.UI;
 
 public class Audio : MonoBehaviour
 {
-    public Button audioButt;
-
+    public GameObject audioObject;
     private AudioSource audioSource;
 
     // Start is called before the first frame update
@@ -19,10 +18,9 @@ public class Audio : MonoBehaviour
    void Pause() {
         Debug.Log("mute toggle");
 
-        audioSource = audioButt.GetComponent<AudioSource>();
+        audioSource = audioObject.GetComponent<AudioSource>();
         if(!audioSource.isPlaying) {
             audioSource.Play();
-            //audioButt.spriteState.pressedSprit;
         } else {
             audioSource.Pause();
         }
