@@ -8,7 +8,7 @@ public class Pendulum : MonoBehaviour
     [SerializeField, Range(0.0f, 5.0f)] private float speed = 2.0f;
     [SerializeField, Range(0.0f, 10.0f)] private float startTime = 0.0f;
     private float swingLimit = 180f;
-    private
+    
 
     // Start is called before the first frame update
     void Start()
