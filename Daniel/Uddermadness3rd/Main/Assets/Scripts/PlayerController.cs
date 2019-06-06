@@ -85,6 +85,20 @@ public class PlayerController : MonoBehaviour {
 			velocityY = 0;
 		}
 
+        Ray ray = new Ray(transform.position, Vector3.down);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, 1f))
+        {
+			if (hit.transform.gameObject.layer == LayerMask.NameToLayer("Ground"))
+			{
+				transform.SetParent(hit.transform);
+			}
+			else
+			{
+				transform.SetParent(null);
+			}
+        }
+
 		animator.SetBool("Moving", inputDir.magnitude > Mathf.Epsilon);
 		animator.SetFloat("FwdBack", inputDir.normalized.y == 0 ? 1f : inputDir.normalized.y);
 		animator.SetFloat("Strafing", (1f + inputDir.normalized.x) * 0.5f);
@@ -95,6 +109,9 @@ public class PlayerController : MonoBehaviour {
 			idleBreak = null;
 		}
 	}
+
+	
+
 
 	void Jump() {
 		if (controller.isGrounded) {
