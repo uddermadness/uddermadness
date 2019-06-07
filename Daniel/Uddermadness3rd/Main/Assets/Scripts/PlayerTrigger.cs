@@ -4,8 +4,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class PlayerTrigger : MonoBehaviour
 {
-
-    public CheckpointSystem checkpoint;
+    public Vector3 checkpointPosition;
+    public Player player;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -22,11 +23,17 @@ public class PlayerTrigger : MonoBehaviour
     {
         if (other.tag == "Obstacle")
         {
-            gameObject.transform.position = checkpoint.checkpointPosition;
+            gameObject.transform.position = checkpointPosition;
         }
         if (other.tag == "Done")
         {
              SceneManager.LoadScene(0);
+        }
+        if(other.tag == "Checkpoint")
+        {
+            checkpointPosition = gameObject.transform.position;
+            player.SavePlayer();
+            Debug.Log(checkpointPosition);
         }
     }
 }
