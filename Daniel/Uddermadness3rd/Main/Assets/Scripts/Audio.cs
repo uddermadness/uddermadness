@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class Audio : MonoBehaviour
 {
+    //setting game object and audio source for the audio
     public GameObject audioObject;
     private AudioSource audioSource;
 
@@ -19,9 +20,13 @@ public class Audio : MonoBehaviour
         Debug.Log("mute toggle");
 
         audioSource = audioObject.GetComponent<AudioSource>();
+        //if audio is not clicked then play
         if(!audioSource.isPlaying) {
             audioSource.Play();
-        } else if (audioSource.isPlaying)
+        } 
+
+        //else if audio is clicked, then pause
+        else if (audioSource.isPlaying)
         {
             audioSource.Pause();
         }
