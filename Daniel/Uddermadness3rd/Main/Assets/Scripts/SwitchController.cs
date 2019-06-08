@@ -8,7 +8,7 @@ public class SwitchController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        //if switch is jit by bullet with a tag of milk the boolean is set to true
+        //if switch is hit by bullet with a tag of milk the boolean is set to true
         if (other.tag == "Milk")
         {
             Activate();
