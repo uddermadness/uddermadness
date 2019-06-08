@@ -24,12 +24,12 @@ using System.Collections;
 
         currentBullet = 0;
 
-        Debug.Log(inventory.items[0].item);
-        Debug.Log(inventory.items[0].count);
-        Debug.Log(inventory.items[1].item);
-        Debug.Log(inventory.items[1].count);
-        Debug.Log(inventory.items[2].item);
-        Debug.Log(inventory.items[2].count);
+        // Debug.Log(inventory.items[0].item);
+        // Debug.Log(inventory.items[0].count);
+        // Debug.Log(inventory.items[1].item);
+        // Debug.Log(inventory.items[1].count);
+        // Debug.Log(inventory.items[2].item);
+        // Debug.Log(inventory.items[2].count);
         
     }
     
@@ -57,50 +57,52 @@ using System.Collections;
 
         // if (isReloading)
         //     return;
-
+        // using if statements to check which bullet is selected and how ammo is left
+        // if the ammo runs out the ammo type is set back to the default milk
+        // to change ammo the player has to choose from 1(milk default),2(ice),3(pepper),4(slime)
         if (currentAmmo <= 0)
         {
             // StartCoroutine(Reload());
             // return;
             currentBullet = 0;
         }
-        if(Input.GetKeyDown(KeyCode.Alpha1))
+        else if(Input.GetKeyDown(KeyCode.Alpha1))
         {
             currentBullet = 0;
         }
-        if(Input.GetKeyDown(KeyCode.Alpha2))
+        else if(Input.GetKeyDown(KeyCode.Alpha2))
         {
             currentBullet = 1;
             currentAmmo = inventory.items[currentBullet - 1].count;
             if (currentAmmo == 0)
             {
                 currentBullet = 0;
-                Debug.Log("DefaultBullet");
+                //Debug.Log("DefaultBullet");
             }
-            Debug.Log(currentAmmo + "ice");
+            //Debug.Log(currentAmmo + "ice");
         }
-        if(Input.GetKeyDown(KeyCode.Alpha3))
+        else if(Input.GetKeyDown(KeyCode.Alpha3))
         {
             currentBullet = 2;
             currentAmmo = inventory.items[currentBullet - 1].count;
             if (currentAmmo == 0)
             {
                 currentBullet = 0;
-                Debug.Log("DefaultBullet");
+                //Debug.Log("DefaultBullet");
             }
-            Debug.Log(currentAmmo + "pepper");
+           //Debug.Log(currentAmmo + "pepper");
         }
-        if(Input.GetKeyDown(KeyCode.Alpha4))
+        else if(Input.GetKeyDown(KeyCode.Alpha4))
         {
             currentBullet = 3;
             currentAmmo = inventory.items[currentBullet - 1].count;
-            Debug.Log(currentAmmo + "slime");
+            //Debug.Log(currentAmmo + "slime");
         }
-
+        // firing bullets on left click
         if (Input.GetButton("Fire1"))
             Fire();
     }
-
+    //adding bullets to the inventory
     public void AddBullets(string name)
     {
         Debug.Log("Picked up " + name);

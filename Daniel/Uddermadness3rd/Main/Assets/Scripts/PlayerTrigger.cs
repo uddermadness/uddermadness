@@ -18,19 +18,24 @@ public class PlayerTrigger : MonoBehaviour
     {
         
     }
-    
+    // checing collisions for the player
     void OnTriggerEnter(Collider other)
     {
+
         if (other.tag == "Obstacle")
         {
+            //changing the player position to the last checkpoint position on death
             gameObject.transform.position = checkpointPosition;
         }
         if (other.tag == "Done")
         {
+            //at the end of the level reloads the scene
              SceneManager.LoadScene(0);
         }
         if(other.tag == "Checkpoint")
         {
+            //when a checkpoint is triggered the position of the last checkpoint is saved
+            //and auto save feature is triggered
             checkpointPosition = gameObject.transform.position;
             player.SavePlayer();
             Debug.Log(checkpointPosition);
